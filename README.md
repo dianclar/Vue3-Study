@@ -36,45 +36,56 @@ npm run dev
 ```sh
 npm run build
 ```
+
 # Vue3
+
 更易维护
 更快速度
 更小体积
 更优响应
 
 # 构建Vue项目create-Vue
+
 cli基于webpack
 create基于vite
 
 ## 初始化
+
 npm init vue@latest
 
 ## 安装依赖
+
 npm i
 
 ## 运行
+
 npm run dev
 
 ## vue-official
+
 vscode的语法插件
 
 # 目录变化
 
 ## vite.config.js
+
 基于vite的配置文件
 
 ## main.js
+
 new Vue() => createApp()
 createRouter() createStore()
 封装实例保障独立性
 
 ## App.vue
-先<script setup/>，再<template/>,后<style/>
+
+先`<script setup/>`，再`<template/>`,后`<style/>`
 允许多个多根元素
 
 # 组合式api
 
 ## Setup
+
 早于beforecreate钩子
 this为undefined
 需要return
@@ -98,7 +109,19 @@ const * = computed(()=>{
 ## watch
 作用与vue2一致
 watch(*,(n,o)=>*,{immediate,deep})
-监听具体属性时
+
+### 监听多数据
+watch([*,*],(n,o)=>*)
+
+### 监听具体属性
 watch(()=>*.*,(n,o)=>*)
 
+## 生命周期
+beforeCreate/created    => setup
+beforeMount/mounted     => onBeforeMount/onMounted
+beforeUpdate/updated    => onBeforeUpdate/onUpdated
+beforeDestroy/destroyed => onBeforeUnmount/onUnmounted
 
+## props
+通过defineProps编译器宏挂载
+const props = defineProps({*})
