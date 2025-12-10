@@ -123,5 +123,23 @@ beforeUpdate/updated    => onBeforeUpdate/onUpdated
 beforeDestroy/destroyed => onBeforeUnmount/onUnmounted
 
 ## props
-通过defineProps编译器宏挂载
-const props = defineProps({*})
+通过defineProps编译器宏挂载，解析时转换
+const props = defineProps(['*'])
+通过props.*属性获取，<template/>里不需要
+
+## emit
+通过defineEmits编译器宏挂载，解析时转换
+const emit = defineEmits(['*'])
+
+emit('*',*)
+
+## 模板引用
+先创建ref对象，然后在<template/>里绑定
+const * = ref(null)
+
+<* ref="*"/>
+
+##  defineExpose
+<script setup/>内的属性和方法默认不暴露
+通过defineExpose指定暴露的属性和方法
+defineExpose({*})

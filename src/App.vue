@@ -1,6 +1,8 @@
 <script >
-import { reactive,ref,computed,watch } from 'vue';
+import { reactive,ref,computed,watch,onMounted } from 'vue';
+import son from './components/son.vue';
 export default {
+  components:{son},
   setup() {
     console.log('setup')
     const obj = reactive({
@@ -10,10 +12,11 @@ export default {
     console.log(int.value)
     const intdb = computed(()=>int.value*2)
     watch(()=>int.value,(n,o)=>n+o,{deep:true})
+
     return {
       obj,
       int,
-      intdb
+      intdb,
     }
   },
   beforeCreate() {
@@ -31,6 +34,7 @@ export default {
   <div>
     {{ obj.data }} {{ int }} {{ intdb }}
   </div>
+  <son :int="int" @sondo="d=>int=d"></son>
 </template>
 
 <style scoped></style>
