@@ -1,5 +1,5 @@
 <script >
-import { reactive,ref,computed,watch,onMounted } from 'vue';
+import { reactive,ref,computed,watch } from 'vue';
 import son from './components/son.vue';
 export default {
   components:{son},
