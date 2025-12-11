@@ -189,4 +189,27 @@ const pinia = createPinia()
 createApp(App).use(pinia).mount('#app')
 
 ## 使用
-src目录下创建stort
+src目录下创建store/*.js
+import { defineStore } from 'pinia
+
+### 选项式
+
+
+### 组合式
+export const use*Store = defineStore('*',()=>{
+  const * = ref(*)
+  const * = () => *.value = *
+  const * = computed(()=>*.value=*)
+  return{
+    *
+  }
+})
+
+import { use*Store } from '@/store/*'
+*().*
+
+## storeToRefs
+需导入
+Store属性不能解构，否则丢失响应式,方法可以解构
+可使用storeToRefs解构
+const {*} = storeToRefs(*())

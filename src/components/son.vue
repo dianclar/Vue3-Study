@@ -1,6 +1,7 @@
 <script setup>
   import { onBeforeMount,onBeforeUpdate,onBeforeUnmount,ref,onMounted } from 'vue'
   import sonson from './sonson.vue'
+  import { store } from '@/store'
 console.log(this)
 onBeforeMount(()=>{
   console.log('onBeforeMount')
@@ -26,7 +27,7 @@ onMounted(()=>{
 
 
 <template>
-  <div>
+  <div @click="store().adddata">
     {{ int }}
   </div>
   <sonson  ref="divref"></sonson>

@@ -1,9 +1,13 @@
 <script >
 import { reactive,ref,computed,watch } from 'vue';
 import son from './components/son.vue';
+import { store } from './store';
+import { storeToRefs } from 'pinia';
 export default {
   components:{son},
   setup() {
+    console.log(store(),'store')
+    const {dbdata} = storeToRefs(store())
     console.log('setup')
     const obj = reactive({
       data:123
@@ -17,6 +21,8 @@ export default {
       obj,
       int,
       intdb,
+      store,
+      dbdata
     }
   },
   beforeCreate() {
@@ -32,7 +38,7 @@ export default {
     documentation
   </p>
   <div>
-    {{ obj.data }} {{ int }} {{ intdb }}
+    {{ obj.data }} {{ int }} {{ intdb }} {{ store().data }} {{ dbdata }}
   </div>
   <son :int="int" @sondo="d=>int=d"></son>
 </template>
