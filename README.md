@@ -93,95 +93,114 @@ this 为 undefined
 <script setup></script>为Setup的语法糖，省略return
 
 ## reactive
+
 需导入
 接受对象并返回响应式对象
 
 ## ref
+
 需导入
 接受数据并返回响应式对象
-通过value属性获取，<template/>里不需要
-推荐统一使用ref
+通过 value 属性获取，<template/>里不需要
+推荐统一使用 ref
 
 ## computed
+
 需导入
-作用与vue2一致
-const * = computed(()=>{
-  return *
+作用与 vue2 一致
+const _ = computed(()=>{
+return _
 })
 
 ## watch
+
 需导入
-作用与vue2一致
-watch(*,(n,o)=>*,{immediate,deep})
+作用与 vue2 一致
+watch(_,(n,o)=>_,{immediate,deep})
 
 ### 监听多数据
-watch([*,*],(n,o)=>*)
+
+watch([*,*],(n,o)=>\*)
 
 ### 监听具体属性
-watch(()=>*.*,(n,o)=>*)
+
+watch(()=>_._,(n,o)=>\*)
 
 ## 生命周期
+
 需导入
-beforeCreate/created    => setup
-beforeMount/mounted     => onBeforeMount/onMounted
-beforeUpdate/updated    => onBeforeUpdate/onUpdated
+beforeCreate/created => setup
+beforeMount/mounted => onBeforeMount/onMounted
+beforeUpdate/updated => onBeforeUpdate/onUpdated
 beforeDestroy/destroyed => onBeforeUnmount/onUnmounted
 
 ## props
-通过defineProps编译器宏挂载，解析时转换
+
+通过 defineProps 编译器宏挂载，解析时转换
 const props = defineProps(['*'])
-通过props.*属性获取，<template/>里不需要
+通过 props.\*属性获取，<template/>里不需要
 
 ## emit
-通过defineEmits编译器宏挂载，解析时转换
+
+通过 defineEmits 编译器宏挂载，解析时转换
 const emit = defineEmits(['*'])
 
-emit('*',*)
+emit('_',_)
 
 ## 模板引用
-需导入ref
-先创建ref对象，然后在<template/>里绑定
-const * = ref(null)
 
-<* ref="*"/>
+需导入 ref
+先创建 ref 对象，然后在<template/>里绑定
+const \* = ref(null)
 
-##  defineExpose
+<_ ref="_"/>
+
+## defineExpose
+
 <script setup></script>内的属性和方法默认不暴露
-通过defineExpose指定暴露的属性和方法
-defineExpose({*})
+
+通过 defineExpose 指定暴露的属性和方法
+defineExpose({\*})
 
 ## provide&inject
-跨层通信,可以传递方法
-provide方法传递的参数会被inject方法接收
-provide('*',*)
 
-const * = inject('*')
+跨层通信,可以传递方法
+provide 方法传递的参数会被 inject 方法接收
+provide('_',_)
+
+const _ = inject('_')
 
 ## defineOptions
-vue3.3以上，定义options api选项
+
+vue3.3 以上，定义 options api 选项
 defineOptions({
-    name: '',
+name: '',
 })
 
 ## v-model
-vue3.3以上
-<* v-model="*"/> => <* :modelValue="*" @update:modelValue="*=$event">
-原使用props&emit实现双向绑定
+
+vue3.3 以上
+<_ v-model="_"/> => <_ :modelValue="_" @update:modelValue="\*=$event">
+原使用 props&emit 实现双向绑定
 
 ### defineModel
-前期版本需导入和配置vite.config.js
-通过defineModel实现双向绑定，可直接“修改”
-const * = defineModel()
+
+前期版本需导入和配置 vite.config.js
+通过 defineModel 实现双向绑定，可直接“修改”
+const \* = defineModel()
 
 # pinia
-vue3的状态管理工具，vuex => pinia
-更简单的api，组合式api
+
+vue3 的状态管理工具，vuex => pinia
+更简单的 api，组合式 api
 
 ## 安装
+
 npm i pinia
 
 ## 配置
-main.js创建pinia实例并应用
+
+main.js 创建 pinia 实例并应用
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
@@ -189,48 +208,77 @@ const pinia = createPinia()
 createApp(App).use(pinia).mount('#app')
 
 ## 使用
-src目录下创建store/ *.js
+
+src 目录下创建 store/ \*.js
 import { defineStore } from 'pinia
 
 ### 选项式
 
 import { defineStore } from "pinia";
 export const use*Store = defineStore('*',{
-  state: () => {
-    return {*}
-  },
-  actions: {
-    *() {
-      this.* =
-    },
-  },
-  getters: {
-    *: (state) => {
-	  return state.*
-    }
-  },
+state: () => {
+return {_}
+},
+actions: {
+_() {
+this._ =
+},
+},
+getters: {
+_: (state) => {
+return state.\*
+}
+},
 })
 
 import { use*Store } from '@/store/*'
-*().*
+_()._
 
 ### 组合式
+
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 export const use*Store = defineStore('*',()=>{
-  const * = ref(*)
-  const * = () => *.value = *
-  const * = computed(()=>*.value=*)
-  return{
-    *
-  }
+const _ = ref(_)
+const _ = () => _.value = _
+const _ = computed(()=>_.value=_)
+return{ \*
+}
 })
 
 import { use*Store } from '@/store/*'
-*().*
+_()._
 
 ## storeToRefs
+
 需导入
-Store属性不能解构，否则丢失响应式,方法可以解构
-可使用storeToRefs解构
-const {*} = storeToRefs(*())
+Store 属性不能解构，否则丢失响应式，方法可以解构
+可使用 storeToRefs 解构
+const {_} = storeToRefs(_())
+
+## pinia-plugin-persistedstate
+
+pinia 持久化插件
+与 vuex-persistedstate 相似的 api
+
+### 安装
+
+npm i pinia-plugin-persistedstate
+
+### 注册
+
+src/main.js 下
+import { createApp } from 'vue'
+import App from './App.vue'
+import { createPinia } from 'pinia'
+import persistedstate from 'pinia-plugin-persistedstate'
+const pinia = createPinia()
+createApp(App).use(pinia.use(persistedstate)).mount('#app')
+
+### 使用
+
+export const use*Store = defineStore('*',{
+persist: true
+})
+
+export const use*Store = defineStore('*',()=>{},{persist: true})
