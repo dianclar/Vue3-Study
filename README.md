@@ -271,9 +271,9 @@ src/main.js 下
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
-import persistedstate from 'pinia-plugin-persistedstate'
+import persist from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
-createApp(App).use(pinia.use(persistedstate)).mount('#app')
+createApp(App).use(pinia.use(persist)).mount('#app')
 
 ### 使用
 
@@ -282,3 +282,11 @@ persist: true
 })
 
 export const use*Store = defineStore('*',()=>{},{persist: true})
+
+### 配置
+
+persist: {
+key: '_',
+storage: sessionStorage,
+paths: ['_']
+}
