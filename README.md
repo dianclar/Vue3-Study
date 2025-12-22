@@ -44,10 +44,10 @@ npm run build
 更小体积
 更优响应
 
-# 构建Vue项目create-Vue
+# 构建 Vue 项目 create-Vue
 
-cli基于webpack
-create基于vite
+cli 基于 webpack
+create 基于 vite
 
 ## 初始化
 
@@ -63,13 +63,13 @@ npm run dev
 
 ## vue-official
 
-vscode的语法插件
+vscode 的语法插件
 
 # 目录变化
 
 ## vite.config.js
 
-基于vite的配置文件
+基于 vite 的配置文件
 
 ## main.js
 
@@ -82,15 +82,15 @@ createRouter() createStore()
 先 `<script setup/>`，再 `<template/>`,后 `<style/>`
 允许多个多根元素
 
-# 组合式api
+# 组合式 api
 
 ## Setup
 
-早于beforecreate钩子
-this为undefined
-需要return
+早于 beforecreate 钩子
+this 为 undefined
+需要 return
 
-<script setup/>为Setup的语法糖，省略return
+<script setup></script>为Setup的语法糖，省略return
 
 ## reactive
 需导入
@@ -146,7 +146,7 @@ const * = ref(null)
 <* ref="*"/>
 
 ##  defineExpose
-<script setup/>内的属性和方法默认不暴露
+<script setup></script>内的属性和方法默认不暴露
 通过defineExpose指定暴露的属性和方法
 defineExpose({*})
 
@@ -189,13 +189,34 @@ const pinia = createPinia()
 createApp(App).use(pinia).mount('#app')
 
 ## 使用
-src目录下创建store/*.js
+src目录下创建store/ *.js
 import { defineStore } from 'pinia
 
 ### 选项式
 
+import { defineStore } from "pinia";
+export const use*Store = defineStore('*',{
+  state: () => {
+    return {*}
+  },
+  actions: {
+    *() {
+      this.* =
+    },
+  },
+  getters: {
+    *: (state) => {
+	  return state.*
+    }
+  },
+})
+
+import { use*Store } from '@/store/*'
+*().*
 
 ### 组合式
+import { defineStore } from "pinia";
+import { computed, ref } from "vue";
 export const use*Store = defineStore('*',()=>{
   const * = ref(*)
   const * = () => *.value = *
