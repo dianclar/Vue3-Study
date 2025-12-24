@@ -290,3 +290,16 @@ key: '_',
 storage: sessionStorage,
 paths: ['_']
 }
+
+# router
+
+createRouter() 创建路由实例
+createWebHistory() 使用 history 模式，参数为路径前缀，可为环境变量
+createWebHashHistory() 使用 hash 模式
+useRouter() 获取 router 对象
+useRoute() 获取 route 参数
+
+# 环境变量
+
+import.meta.env 对象暴露的内建变量
+import.meta.env.BASE_URL 为 vite.config.js 中的 bash 项
