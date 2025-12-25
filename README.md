@@ -299,6 +299,17 @@ createWebHashHistory() 使用 hash 模式
 useRouter() 获取 router 对象
 useRoute() 获取 route 参数
 
+## beforeEach
+
+不再需要 next
+return true/undefined 放行
+return false 返回
+return url 跳转
+
+router.beforeEach((to,from) => {
+if (_) return '/_'
+})
+
 # 环境变量
 
 import.meta.env 对象暴露的内建变量
