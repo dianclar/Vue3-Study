@@ -1,28 +1,32 @@
-<script >
-import { reactive,ref,computed,watch } from 'vue';
-import son from './components/son.vue';
-import { store } from './store';
-import { storeToRefs } from 'pinia';
+<script>
+import { reactive, ref, computed, watch } from 'vue'
+import son from './components/son.vue'
+import { store } from './store'
+import { storeToRefs } from 'pinia'
 export default {
-  components:{son},
+  components: { son },
   setup() {
-    console.log(store(),'store')
-    const {dbdata} = storeToRefs(store())
+    console.log(store(), 'store')
+    const { dbdata } = storeToRefs(store())
     console.log('setup')
     const obj = reactive({
-      data:123
+      data: 123,
     })
     const int = ref(123)
     console.log(int.value)
-    const intdb = computed(()=>int.value*2)
-    watch(()=>int.value,(n,o)=>n+o,{deep:true})
+    const intdb = computed(() => int.value * 2)
+    watch(
+      () => int.value,
+      (n, o) => n + o,
+      { deep: true },
+    )
 
     return {
       obj,
       int,
       intdb,
       store,
-      dbdata
+      dbdata,
     }
   },
   beforeCreate() {
@@ -34,13 +38,23 @@ export default {
 <template>
   <h1>You did it!</h1>
   <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
+    Visit
+    <a
+      href="https://vuejs.org/"
+      target="_blank"
+      rel="noopener"
+      >vuejs.org</a
+    >
+    to read the documentation
   </p>
   <div>
     {{ obj.data }} {{ int }} {{ intdb }} {{ store().data }} {{ dbdata }}
   </div>
-  <son :int="int" @sondo="d=>int=d"></son>
+  <son
+    :int="int"
+    @sondo="d => (int = d)"
+  ></son>
+  <router-view />
 </template>
 
 <style scoped></style>

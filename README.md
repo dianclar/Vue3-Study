@@ -51,15 +51,24 @@ create 基于 vite
 
 ## 初始化
 
+```
+# cmd
 npm init vue@latest
+```
 
 ## 安装依赖
 
+```
+# cmd
 npm i
+```
 
 ## 运行
 
+```
+# cmd
 npm run dev
+```
 
 ## vue-official
 
@@ -73,8 +82,12 @@ vscode 的语法插件
 
 ## main.js
 
+```
+// main.js
 new Vue() => createApp()
 createRouter() createStore()
+```
+
 封装实例保障独立性
 
 ## App.vue
@@ -90,7 +103,11 @@ createRouter() createStore()
 this 为 undefined
 需要 return
 
-<script setup></script>为Setup的语法糖，省略return
+```
+<!-- html -->
+<!-- 为Setup的语法糖，省略return -->
+<script setup></script>
+```
 
 ## reactive
 
@@ -108,86 +125,136 @@ this 为 undefined
 
 需导入
 作用与 vue2 一致
-const _ = computed(()=>{
-return _
+
+```
+// js
+const * = computed(() => {
+  return *
 })
+```
 
 ## watch
 
 需导入
 作用与 vue2 一致
-watch(_,(n,o)=>_,{immediate,deep})
+
+```
+// js
+watch(*, (n, o) => *, { immediate, deep })
+```
 
 ### 监听多数据
 
-watch([*,*],(n,o)=>\*)
+```
+watch([*, *], (n, o) => *)
+```
 
 ### 监听具体属性
 
-watch(()=>_._,(n,o)=>\*)
+```
+watch(() => *.*, (n, o) => *)
+```
 
 ## 生命周期
 
 需导入
+
+```
+// js
 beforeCreate/created => setup
 beforeMount/mounted => onBeforeMount/onMounted
 beforeUpdate/updated => onBeforeUpdate/onUpdated
 beforeDestroy/destroyed => onBeforeUnmount/onUnmounted
+```
 
 ## props
 
 通过 defineProps 编译器宏挂载，解析时转换
+
+```
+// js
 const props = defineProps(['*'])
-通过 props.\*属性获取，<template/>里不需要
+props.* // 获取
+
+<!-- html -->
+{{ * }}
+```
 
 ## emit
 
 通过 defineEmits 编译器宏挂载，解析时转换
-const emit = defineEmits(['*'])
 
-emit('_',_)
+```
+// js
+const emit = defineEmits(['*'])
+emit('*', *)
+```
 
 ## 模板引用
 
 需导入 ref
-先创建 ref 对象，然后在<template/>里绑定
-const \* = ref(null)
+先创建 ref 对象，然后在元素 ref 里绑定
 
-<_ ref="_"/>
+```
+// js
+const * = ref()
+
+<!-- html -->
+<* ref="*" />
+```
 
 ## defineExpose
 
-<script setup></script>内的属性和方法默认不暴露
+setup 内的属性和方法默认不暴露
 
 通过 defineExpose 指定暴露的属性和方法
-defineExpose({\*})
+
+```
+// js
+defineExpose({*})
+```
 
 ## provide&inject
 
 跨层通信,可以传递方法
 provide 方法传递的参数会被 inject 方法接收
-provide('_',_)
 
-const _ = inject('_')
+```
+// js
+provide('*', *) // 组组件
+
+const * = inject('*') // 子组件
+```
 
 ## defineOptions
 
 vue3.3 以上，定义 options api 选项
+
+```
+// js
 defineOptions({
-name: '',
+  name: '',
 })
+```
 
 ## v-model
 
 vue3.3 以上
-<_ v-model="_"/> => <_ :modelValue="_" @update:modelValue="\*=$event">
 原使用 props&emit 实现双向绑定
+
+```
+<* :modelValue="*" @update:modelValue="* = $event"> => <* v-model="*"/>
+```
 
 ### defineModel
 
 前期版本需导入和配置 vite.config.js
 通过 defineModel 实现双向绑定，可直接“修改”
-const \* = defineModel()
+
+```
+// js
+const * = defineModel()
+```
 
 # pinia
 
@@ -196,65 +263,85 @@ vue3 的状态管理工具，vuex => pinia
 
 ## 安装
 
+```
+# cmd
 npm i pinia
+```
 
 ## 配置
 
 main.js 创建 pinia 实例并应用
+
+```
+// main.js
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
 const pinia = createPinia()
 createApp(App).use(pinia).mount('#app')
+```
 
 ## 使用
 
-src 目录下创建 store/ \*.js
+src 目录下创建 store/\*.js
+
+```
+// store.js
 import { defineStore } from 'pinia
+```
 
 ### 选项式
 
+```
+// store.js
 import { defineStore } from "pinia";
 export const use*Store = defineStore('*',{
-state: () => {
-return {_}
-},
-actions: {
-_() {
-this._ =
-},
-},
-getters: {
-_: (state) => {
-return state.\*
-}
-},
+  state: () => {
+    return {*}
+  },
+  actions: {
+    *() {
+      this.* = *
+    },
+  },
+  getters: {
+    *: (state) => {
+      return state.*
+    }
+  },
 })
 
+// js
 import { use*Store } from '@/store/*'
-_()._
+*().*
+```
 
 ### 组合式
 
+```
+// store.js
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-export const use*Store = defineStore('*',()=>{
-const _ = ref(_)
-const _ = () => _.value = _
-const _ = computed(()=>_.value=_)
-return{ \*
-}
+export const use*Store = defineStore('*', () => {
+  const * = ref(*) // state
+  const * = () => *.value = * // action
+  const * = computed(() => *.value = *) // getter
+  return{*}
 })
 
-import { use*Store } from '@/store/*'
-_()._
+// 使用同上
+```
 
 ## storeToRefs
 
 需导入
 Store 属性不能解构，否则丢失响应式，方法可以解构
 可使用 storeToRefs 解构
-const {_} = storeToRefs(_())
+
+```
+// js
+const {*} = storeToRefs(*())
+```
 
 ## pinia-plugin-persistedstate
 
@@ -263,52 +350,98 @@ pinia 持久化插件
 
 ### 安装
 
+```
+# cmd
 npm i pinia-plugin-persistedstate
+```
 
 ### 注册
 
 src/main.js 下
+
+```
+// main.js
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
 import persist from 'pinia-plugin-persistedstate'
+
 const pinia = createPinia()
 createApp(App).use(pinia.use(persist)).mount('#app')
+```
 
 ### 使用
 
+```
+// store.js
 export const use*Store = defineStore('*',{
-persist: true
+  ...,
+  persist: true
 })
 
-export const use*Store = defineStore('*',()=>{},{persist: true})
+export const use*Store = defineStore('*', () => {}, { persist: true })
+```
 
 ### 配置
 
+```
+// store.js
 persist: {
-key: '_',
-storage: sessionStorage,
-paths: ['_']
+  key: '*', // 指定存储的 key
+  storage: sessionStorage, // 指定存储方式，默认 localStorage
+  paths: ['*'] // 指定持久化的属性
 }
+```
 
 # router
 
-createRouter() 创建路由实例
-createWebHistory() 使用 history 模式，参数为路径前缀，可为环境变量
-createWebHashHistory() 使用 hash 模式
-useRouter() 获取 router 对象
-useRoute() 获取 route 参数
+```
+# cmd
+npm install vue-router@4
+```
+
+```
+// router.js
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+
+const routes = [
+  { path: '/', component: () => import('./*') }
+]
+
+export default createRouter({ // 创建路由实例
+  history: createWebHistory(), // 使用 history 模式，参数为路径前缀，可为环境变量
+  routes,
+})
+```
+
+```
+// main.js
+import router from './router'
+
+createApp(App).use(router).mount('#app')
+```
+
+```
+<!-- html -->
+<router-view />
+```
+
+```
+// js
+useRouter() // 获取 router 对象
+useRoute() // 获取 route 参数
+```
 
 ## beforeEach
 
 不再需要 next
-return true/undefined 放行
-return false 返回
-return url 跳转
 
-router.beforeEach((to,from) => {
-if (_) return '/_'
+```
+// router.js
+router.beforeEach((to, from) => {
+  if (*) return '/*' // true/undefined放行，false返回，url 跳转
 })
+```
 
 # 环境变量
 

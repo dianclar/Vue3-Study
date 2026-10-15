@@ -1,34 +1,39 @@
 <script setup>
-  import { onBeforeMount,onBeforeUpdate,onBeforeUnmount,ref,onMounted } from 'vue'
-  import sonson from './sonson.vue'
-  import { store } from '@/store'
+import {
+  onBeforeMount,
+  onBeforeUpdate,
+  onBeforeUnmount,
+  ref,
+  onMounted,
+} from 'vue'
+import sonson from './sonson.vue'
+import { store } from '@/store'
 console.log(this)
-onBeforeMount(()=>{
+onBeforeMount(() => {
   console.log('onBeforeMount')
 })
-onBeforeUpdate(()=>{
+onBeforeUpdate(() => {
   console.log('onBeforeUpdate')
 })
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   console.log('onBeforeUnmount')
 })
 
 const props = defineProps(['int'])
 const emit = defineEmits(['sondo'])
-setTimeout(()=>{
-  emit('sondo',111)
-},1000)
+setTimeout(() => {
+  emit('sondo', 111)
+}, 1000)
 
 const divref = ref(null)
-onMounted(()=>{
+onMounted(() => {
   console.log(divref.value.sonson)
 })
 </script>
-
 
 <template>
   <div @click="store().adddata">
     {{ int }}
   </div>
-  <sonson  ref="divref"></sonson>
+  <sonson ref="divref"></sonson>
 </template>
